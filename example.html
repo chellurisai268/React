@@ -1,0 +1,134 @@
+<html></html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <style>
+            input[type="text"] {
+                width: 1em;
+                text-align: center;
+                font-size: 1.5em;
+                border-radius: 10px;
+            }
+
+            #d2{
+                color:blue;
+                margin-left: 25%;
+                font-size: 300%;
+                border-radius: 50%;        
+            }
+            #d3{
+                border:none;
+                width:30%;
+                height: 60%;
+                margin-left: 35%;
+                margin-top: 9%;
+                border-radius: 5%;
+                box-shadow: 3px 3px 3px 3px grey;
+              
+            }
+            #d4{
+                margin-left: 25%;
+                margin-top: 10%;
+                                
+            }
+            #d6{
+                width:75%;
+                border: none;
+                height:15%;  
+                margin-top:8% ;
+               border-radius: 30px;
+               font-size: 1em;
+               color: white;
+               background-color: blue;
+            }
+            #subbu{
+                padding-top: 10px;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <div id="d1"></div>
+        <script type="text/babel">
+            function App(){
+                var ref1=React.useRef();
+                var ref2=React.useRef();
+                var ref3=React.useRef();
+                var ref4=React.useRef();
+                var refbtn=React.useRef();
+                var [otp,setOtp]=React.useState('');
+
+
+                React.useEffect(()=>{
+                    ref1.current.focus(); 
+                },[])
+                function focus1(e){
+                    console.log(e);
+                    if(e.key=='Backspace'){
+                        ref1.current.focus();
+                    }
+                    else{
+                        ref2.current.focus();
+                    }
+                }
+                function focus2(e){
+                    if(e.key=='Backspace'){
+                     ref1.current.focus();
+                    }
+                    else{
+                        ref3.current.focus();
+                    }
+                }
+                function focus3(e){
+                    if(e.key=='Backspace'){
+                    ref2.current.focus();
+                    }
+                    else{
+                        ref4.current.focus();
+                    }
+                }
+                function focusbutton(e){
+                    if(e.key=='Backspace'){
+                    ref3.current.focus();
+                    }
+                    else{
+                        refbtn.current.focus();
+                    } 
+                }
+                var buttonClick=()=>{
+                    setOtp(otp+"Your OTP verification successfull");
+                    ref1.current.value=""
+                    ref2.current.value=""
+                    ref3.current.value=""
+                    ref4.current.value=""
+                    
+                };
+                return (
+                   <div id="d3">
+                    <div id="subbu">
+                        <div id="d4">
+                    <h1 id="d2"><i class="bi bi-shield-fill-check"></i></h1>
+                    <h2 style={{marginLeft:'8%'}}>Enter OTP Code </h2>
+                    <input type="text" maxlength='1' id="ss" style={{width:'15%',height:"15%" ,margin:'5px',border:"2px solid pink"}} ref={ref1} onKeyUp={(e)=>{focus1(e)}}/>
+                    <input type="text" maxlength='1' id="ss" style={{width:'15%',height:"15%" ,margin:'5px',border:"2px solid pink"}} ref={ref2} onKeyUp={(e)=>{focus2(e)}}/>
+                    <input type="text" maxlength='1' id="ss" style={{width:'15%',height:"15%" ,margin:'5px',border:"2px solid pink"}} ref={ref3} onKeyUp={(e)=>{focus3(e)}}/>
+                    <input type="text" maxlength='1' id="ss" style={{width:'15%',height:"15%" ,margin:'5px',border:"2px solid pink"}} ref={ref4} onKeyUp={(e)=>{focusbutton(e)}}/>
+                    <br/>
+                    <div><i style={{color:'green'}}>{otp}</i></div>
+                    <button id="d6" ref={refbtn} onClick={buttonClick}>Verify OTP</button>
+                    </div>
+
+                        </div>
+                    
+                    </div>
+
+                )
+            }
+        
+            
+            ReactDOM.render(<App/>,document.getElementById("d1"))
+        </script>
+    </body>
+</html>

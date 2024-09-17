@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="d1"></div>
+        <script type="text/babel">
+            function App(){
+                var aref=React.useRef();
+                var bref=React.useRef();
+                var cref=React.useRef();
+
+                React.useEffect(()=>{
+                    aref.current.focus(); 
+                },[])
+                function focus1(e){
+                    if(e.key==="Enter"){
+                        bref.current.focus();
+                    }
+                }
+                function focusChild(e){
+                    if(e.key==="Enter"){
+                        cref.current.focus();
+                    }
+                }
+                return (<div style={{border:"2px solid green",padding:"20px"}}>
+                        <h1>App Componet</h1>
+                        <input type="text" ref={aref}  onKeyUp={(e)=>{focus1(e)}}/>
+                        <br/>
+                        <input type="text" ref={bref} onKeyUp={(e)=>{focusChild(e)}}/>
+                        <br/>
+                        <Child ref={cref}></Child>
+                       </div>);        
+                    
+            }
+            var Child=React.forwardRef(
+                function(props,refs) {
+               return ( <div style={{border:"2px solid pink",margin:"20px",padding:"20px" }}>
+                            <h1>child</h1>
+                            <input type="text" ref={refs}/>
+                       </div>
+                    );
+             } 
+             )  
+            ReactDOM.render(<App/>,document.getElementById("d1"))
+        </script>
+    </body>
+</html>
